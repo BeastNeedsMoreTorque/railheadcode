@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rail HeadCode</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.19.1/ramda.min.js"></script>
+  <style></style>
+</head>
+<body>
+  <div>
+    <input type="textbox" id="headcode">
+  </div>
+  <div>
+    <button id="rheadcode" type="submit">Head Code</button>
+  </div>
+  <div id="display"></div>
+  <div id="show"></div>
+
+  <script>
+      function headcode () {
+        $("#display").html("Yea man");
+      }
+
+      /* Clicking a button */
+      // $("#rheadcode").click(function (){
+      //   var hc = $('#headcode').val(); //could use $("input") instead
+      //   if (hc == 'A') { headcode(); /*$("#display").html("Yea man");*/ }
+      //   else {$("#display").html(hc);}
+      //
+      //   console.log(hc);
+      // });
+
+      /* Using on keyup */
+      $("input").keyup(function (){
+        var headcode = [];
+        value = $(this).val().toUpperCase();
+        var xyz = headcode.concat(value);
+        headcode.push(value);
+        $("#display").html(xyz);
+
+        //parse the headcode entered
+        var pattern = xyz.toString();
+        var myheadcode = pattern.split(",");
+
+        // console.log(xyz);
+        console.log("this is headcode: " + headcode);
+        // console.log(pattern);
+        console.log(myheadcode);
+      });
+
+
+  </script>
+</body>
+</html>
