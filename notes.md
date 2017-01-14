@@ -6,9 +6,12 @@ $ npm run your_script
 
 ### Steps to remove directory
 $ git rm -r --cached MyFolder //--cached removes it from git but not the local file system
+
 $ git commit -m "Removed folder from repository"
+
 $ git push origin master // another branch
 
-1. Baked potato
-2. Baked beans
-3. Pepper
+## TODOs
+1. Practice
+2. More Practive
+3. Even More Practice
