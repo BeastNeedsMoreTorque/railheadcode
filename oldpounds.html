@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Rail Headcode</title>
+    <link href="/css/jumbotron.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://d3js.org/d3.v3.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="jumbotron text-center">
+            <h1> Convert Old Sterling to New Sterling </h1>
+        </div>
+        <!-- convert pounds back and forth -->
+        <div class="row">
+            <div class="well well-lg">
+                <div class="col-sm-3">
+                    <form>
+                        <div class="form-group">
+                            <label for="oldpounds">Old Pounds: </label>
+                            <input id="oldpounds" class="form-control" type="number" placeholder="Enter old pounds" oninput="updateNewPounds()" />
+                            <label for="newpounds">New Pounds: </label>
+                            <div id="newpounds"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-3">
+                    <form id="new2old">
+                        <div class="form-group">
+                            <label for="newpounds2">New Pounds: </label>
+                            <input id="newpounds2" class="form-control" type="number" placeholder="Enter new pounds" onkeyup="updateOldPounds()" />
+                            <label for="oldpounds2">Old Pounds: </label>
+                            <div id="oldpounds2"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="ajax">Select Year: </label>
+                        <input type="text" id="ajax" list="json-datalist" placeholder="e.g. datalist">
+                        <datalist id="json-datalist"></datalist>
+                        <div id="ajax_out"></div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="">Another Way:  </label>
+                        <input type="text" id="myInput" placeholder="updates instanstly" oninput="someFunction()">
+                        <div id="demo"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Even More -->
+        <input id="name" list="allNames" />
+        <datalist id="allNames">
+            <option id="4" value="Adnan1" />
+            <option id="10" value="Faizan2" />
+        </datalist>
+        <div id="yeahyeah"></div>
+        <div id="hoho"></div>
+        <!-- Submit this form -->
+        <form id="myForm">
+            <input list="answers" id="answer">
+            <datalist id="answers">
+                <option data-value="42">The answer</option>
+                <option data-value="1337">Elite</option>
+                <option data-value="69">Dirty</option>
+                <option data-value="3">Pi</option>
+            </datalist>
+            <input type="hidden" name="answer" id="answer-hidden">
+            <input type="submit">
+        </form>
+        <p>Submitted value (for debugging):</p>
+        <div id="result"></div>
+        <!-- add some numbers together -->
+        <div class="row">
+            <div class="well well-lg">
+                <form oninput="result.value = parseInt(a.value) + parseInt(b.value)">
+                    <div class="form-group">
+                        <input class="form-control" type="number" name="b" value="0" /> +
+                        <input class="form-control" type="number" name="a" value="0" /> =
+                        <output class="form-control" name="result"></output>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--<script>
+    System.config({
+        meta: {
+            format: 'cjs'
+        }
+    });
+    System.import('build/app.js');
+    </script>-->
+    <script src="./build/app.js" type="text/javascript"></script>
+    <script>
+        // d3.csv('./lib/inflationMultiplier.csv', function(error, data) {
+        //     const select = d3.select('body')
+        //         .append('div')
+        //         .append('select')
+
+        //     select
+        //         .on('change', function(d) {
+        //             const value = d3.select(this).property('Year');
+        //             //alert(value);
+        //         });
+
+        //     select.selectAll('option')
+        //         .data(data)
+        //         .enter()
+        //         .append('option')
+        //         .attr('value', function(d) {
+        //             return d.Year;
+        //         })
+        //         .text(function(d) {
+        //             return d.Year;
+        //         });
+
+        //     //console.log(data)
+        // });
+
+        // Get the <datalist> and <input> elements.
+        var dataList = document.getElementById('json-datalist');
+        var input = document.getElementById('ajax');
+        var output = document.getElementById('ajax_out');
+
+        d3.csv('./lib/inflationMultiplier.csv', function(error, data) {
+            data.forEach(function(item) {
+                var option = document.createElement('option');
+                var multiplier = +item.Multiplier;
+                option.value = item.Year;
+                // option.label = item.Year;
+                //option.getAttribute('data-value') = +item.Multiplier;
+                option.id = +item.Multiplier;
+                dataList.appendChild(option);
+
+            });
+            input.placeholder = "e.g. datalist";
+
+            console.log(data);
+        });
+
+        // Create a new XMLHttpRequest.
+        // var request = new XMLHttpRequest();
+
+        // // Handle state changes for the request.
+        // request.onreadystatechange = function(response) {
+        //     if (request.readyState === 4) {
+        //         if (request.status === 200) {
+        //             // Parse the JSON
+        //             var jsonOptions = JSON.parse(request.responseText);
+        //             console.log(jsonOptions);
+        //             // Loop over the JSON array.
+        //             jsonOptions.forEach(function(item) {
+        //                 // Create a new <option> element.
+        //                 var option = document.createElement('option');
+        //                 // Set the value using the item in the JSON array.
+        //                 option.value = item;
+        //                 // Add the <option> element to the <datalist>.
+        //                 dataList.appendChild(option);
+        //             });
+
+        //             // Update the placeholder text.
+        //             input.placeholder = "e.g. datalist";
+        //         } else {
+        //             // An error occured :(
+        //             input.placeholder = "Couldn't load datalist options :(";
+        //         }
+        //     }
+        // };
+
+        // // Update the placeholder text.
+        // input.placeholder = "Loading options...";
+
+        // // Set up and make the request.
+        // request.open('GET', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/4621/html-elements.json', true);
+        // request.send();
+
+        /** submit form    */
+        document.querySelector('input[list]').addEventListener('input', function(e) {
+            var input = e.target,
+                list = input.getAttribute('list'),
+                options = document.querySelectorAll('#' + list + ' option'),
+                hiddenInput = document.getElementById(input.getAttribute('id') + '-hidden'),
+                label = input.value;
+
+            hiddenInput.value = label;
+            console.log(hiddenInput);
+
+            for (var i = 0; i < options.length; i++) {
+                var option = options[i];
+
+                if (option.innerText === label) {
+                    hiddenInput.value = option.getAttribute('data-value');
+                    break;
+                }
+            }
+        });
+
+        // For debugging purposes
+        document.getElementById("myForm").addEventListener('submit', function(e) {
+            var value = document.getElementById('answer-hidden').value;
+            document.getElementById('result').innerHTML = value;
+            e.preventDefault();
+            console.log('value is: ', value)
+        });
+
+        /** another way */
+        function someFunction() {
+            var x = document.getElementById("myInput").value;
+            document.getElementById("demo").innerHTML = "You wrote: " + x;
+        }
+
+        /** jQuery way */
+        $("#name").on('input', function() {
+            var val = this.value;
+            if ($('#allNames option').filter(function() {
+                    return this.value === val;
+                }).length) {
+                //send ajax request
+                //console.log(this.value);
+                document.getElementById('yeahyeah').innerHTML = this.value;
+            }
+        });
+
+        /** *************Vanila JS way**************************** */
+        document.getElementById('name').addEventListener('input', function() {
+            //console.log(this.value);
+            document.getElementById('hoho').innerHTML = this.value;
+        });
+    </script>
+</body>
+
+</html>

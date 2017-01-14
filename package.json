@@ -1,0 +1,49 @@
+{
+  "name": "rail_headcode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server",
+    "build": "babel js -d build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BeastNeedsMoreTorque/railheadcode.git"
+  },
+  "author": "JCW",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BeastNeedsMoreTorque/railheadcode/issues"
+  },
+  "homepage": "https://github.com/BeastNeedsMoreTorque/railheadcode#readme",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "data.either": "^1.4.0",
+    "data.task": "^3.1.1",
+    "fantasy-identities": "0.0.1",
+    "immutable": "^3.8.1",
+    "immutable-ext": "^1.0.8",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "request": "^2.79.0",
+    "requirejs": "^2.3.2",
+    "systemjs": "^0.19.41"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.21.0",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "eslint": "^3.12.2",
+    "eslint-loader": "^1.6.1",
+    "eslint-plugin-react": "^6.8.0",
+    "http-server": "^0.9.0",
+    "react-hot-loader": "^1.3.1",
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
+  }
+}

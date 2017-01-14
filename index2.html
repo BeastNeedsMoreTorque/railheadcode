@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>d3</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js" charset="utf-8"></script>
+
+</head>
+
+<body>
+    <div id="bar"></div>
+    <div id="pie"></div>
+
+    <script>
+        var dataset = [8, 48, 14, 31, 23];
+
+        svg = d3.select("#bar").append("svg").attr({
+            width: 600,
+            height: 400
+        });
+
+        svg.selectAll('rect')
+            .data(dataset)
+            .enter() //create placeholders for our elements
+            .append("rect")
+            .attr({
+                x: function(d, i) {
+                    return i * 101;
+                },
+                y: function(d, i) {
+                    return 400 - (d * 5);
+                },
+                width: 100,
+                height: function(d) {
+                    return d * 5;
+                },
+                fill: "orange"
+            });
+
+        /* *************** pic chartr******************* */
+        var piewidth = 400;
+        var pieheight = 400;
+        var radius = 200;
+        var colors = d3.scale.category20();
+
+        var pieData = [{
+            console: 'PS4',
+            purchases: 5500
+        }, {
+            console: 'XBOX1',
+            purchases: 2100
+        }, {
+            console: 'XBOX 360',
+            purchases: 1900
+        }, {
+            console: 'PS3',
+            purchases: 1800
+        }, {
+            console: 'WII',
+            purchases: 1300
+        }]
+
+        var pie = d3.layout.pie()
+            .value(function(d) {
+                return d.purchases
+            })
+
+        var arc = d3.svg.arc()
+            .outerRadius(radius)
+
+        var chart = d3.select('#pie').append('svg')
+            .attr('width', piewidth)
+            .attr('height', pieheight)
+            .append('g')
+            .attr('transform', 'translate(' + (piewidth - radius) + ', ' + (pieheight - radius) + ')')
+            .selectAll('path')
+            .data(pie(pieData))
+            .enter()
+            .append('g')
+            .attr('class', 'slice')
+
+        var slices = d3.selectAll('g.slice')
+            .append('path')
+            .attr('fill', function(d, i) {
+                return colors(i)
+            })
+            .attr('d', arc)
+
+        var text = d3.selectAll('g.slice')
+            .append('text')
+            .text(function(d, i) {
+                return d.data.console
+            })
+            .attr('text-anchor', 'middle')
+            .attr('transform', function(d) {
+                d.innerRadius = 0;
+                d.outerRadius = radius;
+                return 'translate(' + arc.centroid(d) + ')'
+            })
+    </script>
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js" charset="utf-8"></script> -->
+</body>
+
+</html>
