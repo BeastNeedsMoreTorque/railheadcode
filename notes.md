@@ -8,3 +8,7 @@ $ npm run <script>
 $ git rm -r --cached MyFolder //--cached removes it from git but not the local file system
 $ git commit -m "Removed folder from repository"
 $ git push origin master // another branch
+
+1. Baked potato
+2. Baked beans
+3. Pepper
