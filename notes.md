@@ -2,7 +2,7 @@
 $ ./node_modules/.bin/babel js -d build
 
 ### run a script
-$ npm run <script>
+$ npm run your_script
 
 ### Steps to remove directory
 $ git rm -r --cached MyFolder //--cached removes it from git but not the local file system
