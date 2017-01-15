@@ -1,6 +1,10 @@
 ### to run local node_modules
 $ ./node_modules/.bin/babel js -d build
 
+// need to use git cmd line to run this in Windows OS
+
+$ ./node_modules/.bin/babel js --presets es2015 --out-dir build
+
 ### run a script
 $ npm run your_script
 
