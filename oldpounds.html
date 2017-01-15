@@ -60,10 +60,20 @@
         <!-- Using a form and output -->
         <div class="row">
             <div class="col-sm-8">
-                <form onsubmit="return false" oninput="myFunction()">
-                    <span>L: </span><input id="pounds" type="number" value="0" min="0" placeholder="Enter Pounds">
-                    <span>s: </span><input id="shillings" type="number" value="0" min="0" placeholder="Enter shillings">
-                    <span>d: </span><input id="pence" type="number" value="0" min="0" placeholder="Enter pence">
+                <form class="form-inline" onsubmit="return false" oninput="myFunction()">
+                    <div class="form-group">
+                        <label for="pounds"><span>Pounds (L): </span></label>
+                        <input id="pounds" type="number" value="0" min="0" placeholder="Enter Pounds">
+                    </div>
+                    <div class="form-group">
+                        <label for="shillings"> <span>Shillings (s): </span></label>
+                        <input id="shillings" type="number" value="0" min="0" placeholder="Enter shillings">
+                    </div>
+                    <div class="form-group">
+                        <label for="pence"> <span>Pence (d): </span></label>
+                        <input id="pence" type="number" value="0" min="0" placeholder="Enter pence">
+                    </div>
+                    <!--<div class="form-group"></div>-->
                     <output name="output" for="pounds shillings pence"></output>
                 </form>
             </div>
