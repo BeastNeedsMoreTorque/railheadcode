@@ -75,6 +75,14 @@ var myFunc = function myFunc() {
     result.value = parseInt(a.value) + parseInt(b.value);
 };
 
+var poundsShillingsPence = function poundsShillingsPence() {
+    //convert to total pence
+    var pounds2Pence = document.getElementById('pounds').value * 240;
+    var shillings2Pence = document.getElementById('shillings').value * 5;
+    var totalPence = pounds2Pence + shillings2Pence + document.getElementById('pence').value;
+    return totalPence;
+};
+
 /** %%%%%%%%%%%%%%%%%%%%%%%%% auto dropdown %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 // // Get the <datalist> and <input> elements.
 // var dataList = document.getElementById('json-datalist');
