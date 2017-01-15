@@ -76,6 +76,14 @@ const myFunc = () => {
     result.value = parseInt(a.value) + parseInt(b.value)
 }
 
+const poundsShillingsPence = () => {
+    //convert to total pence
+    const pounds2Pence = document.getElementById('pounds').value * 240;
+    const shillings2Pence = document.getElementById('shillings').value * 5;
+    const totalPence = pounds2Pence + shillings2Pence + document.getElementById('pence').value;
+    return totalPence; 
+}
+
 
 /** %%%%%%%%%%%%%%%%%%%%%%%%% auto dropdown %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 // // Get the <datalist> and <input> elements.

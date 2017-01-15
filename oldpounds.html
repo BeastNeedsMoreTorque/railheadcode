@@ -34,7 +34,7 @@
                     <form id="new2old">
                         <div class="form-group">
                             <label for="newpounds2">New Pounds: </label>
-                            <input id="newpounds2" class="form-control" type="number" placeholder="Enter new pounds" onkeyup="updateOldPounds()" />
+                            <input id="newpounds2" class="form-control" type="number" placeholder="Enter new pounds" oninput="updateOldPounds()" />
                             <label for="oldpounds2">Old Pounds: </label>
                             <div id="oldpounds2"></div>
                         </div>
@@ -57,26 +57,39 @@
                 </div>
             </div>
         </div>
-        <!-- Even More -->
-        <input id="name" list="allNames" />
-        <datalist id="allNames">
-            <option id="4" value="Adnan1" />
-            <option id="10" value="Faizan2" />
-        </datalist>
-        <div id="yeahyeah"></div>
-        <div id="hoho"></div>
-        <!-- Submit this form -->
-        <form id="myForm">
-            <input list="answers" id="answer">
-            <datalist id="answers">
-                <option data-value="42">The answer</option>
-                <option data-value="1337">Elite</option>
-                <option data-value="69">Dirty</option>
-                <option data-value="3">Pi</option>
+        <!-- Using a form and output -->
+        <div class="row">
+            <div class="col-sm-8">
+                <form onsubmit="return false" oninput="myFunction()">
+                    <span>L: </span><input id="pounds" type="number" value="0" min="0" placeholder="Enter Pounds">
+                    <span>s: </span><input id="shillings" type="number" value="0" min="0" placeholder="Enter shillings">
+                    <span>d: </span><input id="pence" type="number" value="0" min="0" placeholder="Enter pence">
+                    <output name="output" for="pounds shillings pence"></output>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Even More -->
+            <input id="name" list="allNames" />
+            <datalist id="allNames">
+                <option id="4" value="Adnan1" />
+                <option id="10" value="Faizan2" />
             </datalist>
-            <input type="hidden" name="answer" id="answer-hidden">
-            <input type="submit">
-        </form>
+            <div id="yeahyeah"></div>
+            <div id="hoho"></div>
+            <!-- Submit this form -->
+            <form id="myForm">
+                <input list="answers" id="answer">
+                <datalist id="answers">
+                    <option data-value="42">The answer</option>
+                    <option data-value="1337">Elite</option>
+                    <option data-value="69">Dirty</option>
+                    <option data-value="3">Pi</option>
+                </datalist>
+                <input type="hidden" name="answer" id="answer-hidden">
+                <input type="submit">
+            </form>
+        </div>
         <p>Submitted value (for debugging):</p>
         <div id="result"></div>
         <!-- add some numbers together -->
@@ -132,8 +145,8 @@
         var input = document.getElementById('ajax');
         var output = document.getElementById('ajax_out');
 
-        d3.csv('./lib/inflationMultiplier.csv', function(error, data) {
-            data.forEach(function(item) {
+        d3.csv('./lib/inflationMultiplier.csv', function (error, data) {
+            data.forEach(function (item) {
                 var option = document.createElement('option');
                 var multiplier = +item.Multiplier;
                 option.value = item.Year;
@@ -185,7 +198,7 @@
         // request.send();
 
         /** submit form    */
-        document.querySelector('input[list]').addEventListener('input', function(e) {
+        document.querySelector('input[list]').addEventListener('input', function (e) {
             var input = e.target,
                 list = input.getAttribute('list'),
                 options = document.querySelectorAll('#' + list + ' option'),
@@ -206,7 +219,7 @@
         });
 
         // For debugging purposes
-        document.getElementById("myForm").addEventListener('submit', function(e) {
+        document.getElementById("myForm").addEventListener('submit', function (e) {
             var value = document.getElementById('answer-hidden').value;
             document.getElementById('result').innerHTML = value;
             e.preventDefault();
@@ -220,9 +233,9 @@
         }
 
         /** jQuery way */
-        $("#name").on('input', function() {
+        $("#name").on('input', function () {
             var val = this.value;
-            if ($('#allNames option').filter(function() {
+            if ($('#allNames option').filter(function () {
                     return this.value === val;
                 }).length) {
                 //send ajax request
@@ -232,7 +245,7 @@
         });
 
         /** *************Vanila JS way**************************** */
-        document.getElementById('name').addEventListener('input', function() {
+        document.getElementById('name').addEventListener('input', function () {
             //console.log(this.value);
             document.getElementById('hoho').innerHTML = this.value;
         });
